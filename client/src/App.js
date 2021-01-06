@@ -24,13 +24,11 @@ import Store from "./store";
 import { Provider } from "react-redux";
 
 if (localStorage.token) {
-  console.log("Outside");
   setAuthToken(localStorage.token);
 }
 
 function App() {
   useEffect(() => {
-    console.log("UseEffect");
     Store.dispatch(loadUser());
   }, []);
 
