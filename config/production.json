@@ -1,6 +1,0 @@
-{
-  "MongoDB": "mongodb+srv://Om:Opj@2001@devconnector.goiuu.mongodb.net/DevConnector?retryWrites=true&w=majority",
-  "jwtSecret": "MERN stack",
-  "githubClientId": "c9cac691aa4e1e25a2b5",
-  "githubClientSecret": "2834df192c9953ee4c1044f9a6bc7824268dd717"
-}
