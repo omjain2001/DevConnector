@@ -7,6 +7,8 @@ const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 const request = require("request");
 const config = require("config");
+const dotenv = require("dotenv");
+dotenv.config();
 
 // @route - api/profile/me
 // @access - private
@@ -171,15 +173,8 @@ router.put(
     ],
   ],
   async (req, res) => {
-    const {
-      title,
-      company,
-      location,
-      from,
-      to,
-      current,
-      description,
-    } = req.body;
+    const { title, company, location, from, to, current, description } =
+      req.body;
 
     const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
@@ -250,15 +245,8 @@ router.put(
     ],
   ],
   async (req, res) => {
-    const {
-      school,
-      degree,
-      fieldOfStudy,
-      from,
-      to,
-      current,
-      description,
-    } = req.body;
+    const { school, degree, fieldOfStudy, from, to, current, description } =
+      req.body;
 
     const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
@@ -317,12 +305,10 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 // @access - public
 // @desc - get a user's github repos
 router.get("/github/:username", (req, res) => {
+  githubClientID = process.env.GITHUB_CLIENT_ID;
+  gitclientSecret = process.env.GITHUB_CLIENT_SECRET;
   const options = {
-    uri: `https://api.github.com/users/${
-      req.params.username
-    }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-      "githubClientId"
-    )}&client_secret=${config.get("githubClientSecret")}`,
+    uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${githubClientID}&client_secret=${gitclientSecret}`,
     method: "GET",
     headers: {
       "user-agent": "node.js",

@@ -6,6 +6,8 @@ const gravatar = require("gravatar");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const dotenv = require("dotenv");
+dotenv.config();
 
 // @route - api/user
 // @access - public
@@ -59,7 +61,7 @@ router.post(
         },
       };
 
-      const jwtSecret = config.get("jwtSecret");
+      const jwtSecret = process.env.JWT_SECRET;
       jwt.sign(payload, jwtSecret, { expiresIn: 360000 }, (err, token) => {
         if (err) throw err;
         res.send({

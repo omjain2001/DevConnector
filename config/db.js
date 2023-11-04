@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const config = require("config");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const db = config.get("MongoDB");
+const db = process.env.MONGODB;
 
 const connectDB = async () => {
   try {
@@ -18,4 +20,3 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-
